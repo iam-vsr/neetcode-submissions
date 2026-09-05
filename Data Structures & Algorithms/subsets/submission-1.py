@@ -1,0 +1,17 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans=[]
+        subset=[]
+
+        def dfs(i):
+
+            if i>=len(nums):
+                ans.append(subset[:]) #creates a shallow copy
+                return
+            subset.append(nums[i])
+            dfs(i+1) #choose
+            subset.pop()
+            dfs(i+1) #unchoose
+        
+        dfs(0)
+        return ans
